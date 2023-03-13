@@ -22,4 +22,5 @@ class List
     void remove(int loc);
     std::string get(int loc);
     bool contains(std::string item);
+    std::string find(std::string data);
 };

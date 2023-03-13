@@ -120,3 +120,22 @@ bool List::contains(std::string item)
     
     return false;
 }
+
+std::string List::find(std::string data)
+{
+    Node *walker = head;
+    
+    while(walker->getData() != data && walker != nullptr)
+    {
+        walker = walker->getNext();
+    }
+
+    if(walker == nullptr)
+    {
+        return nullptr;
+    }
+    else
+    {
+        return walker->getData();
+    }
+}
