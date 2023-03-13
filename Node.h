@@ -4,17 +4,22 @@
 class Node
 {
     private:
-        std::string data;
+        //std::string data;
+        int data;
         Node *next;
 
     public:
         Node();
-        Node(std::string data);
-        Node(std::string data, Node *next);
+        //Node(std::string data);
+        Node(int data);
+        //Node(std::string data, Node *next);
+        Node(int data, Node *next);
 
-        void setData(std::string data);
-        void setNext(Node *next);
-        
-        std::string getData();
+        //std::string getData();
+        int getData();
         Node *getNext();
+
+        //void setData(std::string data);
+        void setData(int data);
+        void setNext(Node *next);
 };
