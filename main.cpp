@@ -49,5 +49,7 @@ int main(int argc, char *argv[])
 
     std::cout << "\n\n" << l->toString() << "\n";
 
+    std::cout << "\n" << l->find("4") << "\n";
+
     return 0;
 }
