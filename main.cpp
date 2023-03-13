@@ -7,9 +7,12 @@
 #include <iostream>
 #include "Node.h"
 #include "List.h"
+#include "OList.h"
 
 int main(int argc, char *argv[])
 {
+    /* LIST STUFF IS COMMENTED OUT
+
     List *l = new List();
     
     std::cout << l->toString() << " " << l->length() << "\n";
@@ -51,5 +54,38 @@ int main(int argc, char *argv[])
 
     std::cout << "\n" << l->find("4") << "\n";
 
+    */
+
+    /*OLISTS*/
+
+    OList * l1 = new OList();
+   
+    l1->insert(4);
+    l1->insert(18);
+    l1->insert(45);
+    l1->insert(3);
+    l1->insert(7);
+    l1->insert(1243);
+    l1->insert(333);
+    l1->insert(-2344);
+    l1->insert(13);
+
+
+    std::cout << "Current OList: " << l1->toString() << "\n\n";
+    std::cout << "Contains number 3: " << l1->contains(3) << "\n";
+    std::cout << "Contains number 30: " << l1->contains(30) << "\n";
+    std::cout << "Number at index 4: " << l1->get(4) << "\n";
+    
+    l1->remove(4);
+    std::cout << "Remove number at index 4: done" << "\n\n";
+
+    std::cout << "Updated OList: " << l1->toString() << "\n\n";
+  
+
+    l1->reverse();
+    std::cout << "Reversed OList: " << l1->toString() << "\n\n";
+    delete l1;
+
+    std::cout << "\n";
     return 0;
 }
