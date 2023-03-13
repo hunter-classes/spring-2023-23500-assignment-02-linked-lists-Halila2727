@@ -7,14 +7,50 @@ List::List()
     head = nullptr;
 }
 
-void List::insert(std::string data)
+void List::insert(int data)
 {
     Node *tmp = new Node(data);
     tmp->setNext(head);
     head = tmp;
 }
 
-void List::insert(int loc, std::string data)
+/*void List::insert(int loc, std::string data)
+{
+    Node *walker, *trailer;
+    walker = this->head; // start of the list
+    trailer = nullptr; // one behind
+  
+    while(loc>0 && walker != nullptr)
+    {
+        loc=loc-1;
+
+        trailer=walker;
+        walker = walker->getNext();
+    
+    }
+
+
+    if (loc > 0)
+    {
+        throw std::out_of_range("Our insert is out of range");
+    }
+
+    Node *newNode = new Node(data);
+
+    if (trailer == nullptr)
+    {
+        newNode->setNext(head);
+        head = newNode;
+    } 
+    else 
+    {
+        // do the regular case 
+        newNode->setNext(walker);
+        trailer->setNext(newNode);
+    }
+}*/
+
+void List::insert(int loc, int data)
 {
     Node *walker, *trailer;
     walker = this->head; // start of the list
@@ -64,16 +100,17 @@ int List::length()
 
 std::string List::toString()
 {
-    Node *tmp = this->head;
-    std::string result = "";
-    while (tmp != nullptr)
+    std::string output = "";
+    Node *walker = head;
+    
+    while(walker != nullptr)
     {
-        result = result + tmp->getData();
-        result = result + "-->";
-        tmp = tmp->getNext();
+        output += std::to_string(walker->getData()) + " ----> ";
+        walker = walker->getNext();
     }
-    result = result + "nullptr";
-    return result;
+    
+    output += "nullptr";
+    return output;
 }
 
 List::~List()
@@ -83,20 +120,33 @@ List::~List()
 
 void List::remove(int loc)
 {
-    Node *walker;
-    Node *traileer;
-    
-    walker = this -> head;
-    traileer = nullptr;
-    
-    for(int i = 0; i < loc; i++)
+    Node *walker, *trailer;
+    walker = this->head;
+    trailer = nullptr;
+
+    while(loc > 0 && walker != nullptr)
     {
-        traileer = walker;
-        walker = walker -> getNext();
+        loc--;
+        trailer=walker;
+        walker = walker->getNext();
     }
-    traileer -> setNext(walker ->getNext());
-    walker ->setNext(nullptr);
-    walker->setData("");
+
+    if (walker == nullptr)
+    {
+        throw std::out_of_range("Our remove is out of range");
+    }
+
+    if (trailer == nullptr)
+    {
+        head = walker->getNext();
+    }
+    else
+    {
+        trailer->setNext(walker->getNext());
+    }
+    
+    delete walker;
+    return;
 }
 
 /*
@@ -105,7 +155,23 @@ std::string List::get(int loc)
 
 }*/
 
-bool List::contains(std::string item)
+/*bool List::contains(std::string item)
+{
+    Node *n = this->head;
+
+    while(n != nullptr)
+    {
+        if (n->getData() == item)
+        {
+            return true;
+        }
+        n = n->getNext();
+    }
+    
+    return false;
+}*/
+
+bool List::contains(int item)
 {
     Node *n = this->head;
 
@@ -121,6 +187,7 @@ bool List::contains(std::string item)
     return false;
 }
 
+/*
 std::string List::find(std::string data)
 {
     Node *walker = head;
@@ -138,4 +205,4 @@ std::string List::find(std::string data)
     {
         return walker->getData();
     }
-}
+}*/
